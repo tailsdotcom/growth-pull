@@ -2,12 +2,6 @@
 
 A dockercfg generator for Codeship.
 
-## Local Development
-
-You can autoformat, test, typecheck with
-
-    make
-
 ### Tooling
 
 Unless noted these are pre-configured and used based on their documentation.
