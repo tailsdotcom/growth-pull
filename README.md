@@ -24,9 +24,9 @@ Unless noted these are pre-configured and used based on their documentation.
 Must have access to AWS credentials as per the SDK [documentation](https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html).
 Normally via environment variables:
 
-- AWS_REGION=eu-west-1
-- AWS_ACCESS_KEY_ID=
-- AWS_SECRET_ACCESS_KEY=
+- `AWS_REGION=eu-west-1`
+- `AWS_ACCESS_KEY_ID=`
+- `AWS_SECRET_ACCESS_KEY=`
 
 Will authenticate to that account's ECR, or you can provide a space separated list of Account IDs in `AWS_ECR_REGISTRY_IDS`.
 
