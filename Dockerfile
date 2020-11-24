@@ -13,7 +13,7 @@ RUN cd /app; \
     > etc/ssl/certs/ca-certificates.crt
 RUN apt-get update \
  && apt-get install -y upx-ucl \
- && upx /app/growth-pull
+ && upx --ultra-brute /app/growth-pull
 FROM scratch
 COPY --from=0 /app /
 ENTRYPOINT ["/growth-pull"]
