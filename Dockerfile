@@ -11,6 +11,9 @@ RUN cd /app; \
         https://www.amazontrust.com/repository/AmazonRootCA4.pem \
         https://www.amazontrust.com/repository/SFSRootCAG2.pem \
     > etc/ssl/certs/ca-certificates.crt
+RUN apt-get update \
+ && apt-get install -y upx-ucl \
+ && upx /app/growth-pull
 FROM scratch
 COPY --from=0 /app /
 ENTRYPOINT ["/growth-pull"]
