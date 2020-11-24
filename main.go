@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/base64"
 	"encoding/json"
 	"io/ioutil"
 	"log"
@@ -22,6 +23,17 @@ type docker struct {
 }
 
 func main() {
+	dockercfg := docker{
+		Auths: make(map[string]auth),
+	}
+	// Docker Hub authentication
+	hubUsername := os.Getenv("DOCKER_HUB_USERNAME")
+	hubPassword := os.Getenv("DOCKER_HUB_PASSWORD")
+	if hubUsername != "" && hubPassword != "" {
+		b64auth := base64.URLEncoding.EncodeToString([]byte(hubUsername + ":" + hubPassword))
+		dockercfg.Auths["https://index.docker.io/v1/"] = auth{Auth: b64auth}
+	}
+	// ECR authentication
 	cfg, err := config.LoadDefaultConfig()
 	if err != nil {
 		log.Fatalf("unable to load SDK config, %v", err)
@@ -42,13 +54,10 @@ func main() {
 	if err != nil {
 		log.Fatalf("unable to authorization token, %v", err)
 	}
-	config := docker{
-		Auths: make(map[string]auth),
-	}
 	for _, repo := range resp.AuthorizationData {
-		config.Auths[(*repo.ProxyEndpoint)[8:]] = auth{Auth: *repo.AuthorizationToken}
+		dockercfg.Auths[(*repo.ProxyEndpoint)[8:]] = auth{Auth: *repo.AuthorizationToken}
 	}
-	out, err := json.Marshal(config)
+	out, err := json.Marshal(dockercfg)
 	if err != nil {
 		log.Fatalf("unable marshal json, %v", err)
 	}
