@@ -12,7 +12,6 @@ import (
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/ecr"
 	"github.com/aws/aws-sdk-go-v2/service/sts"
-	"github.com/aws/aws-sdk-go/aws"
 )
 
 type auth struct {
@@ -34,7 +33,7 @@ func main() {
 		dockercfg.Auths["https://index.docker.io/v1/"] = auth{Auth: b64auth}
 	}
 	// ECR authentication
-	cfg, err := config.LoadDefaultConfig()
+	cfg, err := config.LoadDefaultConfig(context.Background())
 	if err != nil {
 		log.Fatalf("unable to load SDK config, %v", err)
 	}
@@ -49,7 +48,7 @@ func main() {
 	}
 	svc := ecr.NewFromConfig(cfg)
 	resp, err := svc.GetAuthorizationToken(context.Background(), &ecr.GetAuthorizationTokenInput{
-		RegistryIds: aws.StringSlice(strings.Split(ids, " ")),
+		RegistryIds: strings.Split(ids, " "),
 	})
 	if err != nil {
 		log.Fatalf("unable to authorization token, %v", err)
