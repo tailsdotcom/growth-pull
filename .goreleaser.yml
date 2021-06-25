@@ -6,12 +6,6 @@ builds:
     - -trimpath
   ldflags:
     - '-s -w -X main.version={{.Version}} -X main.commit={{.Commit}}'
-  goos:
-    - linux
-    - darwin
-  goarch:
-    - amd64
-    - arm64
   hooks:
     post: ./upx.sh {{ .Target }} {{ .Path }}
 archives:
@@ -34,8 +28,8 @@ signs:
       - "${artifact}"
 dockers:
   - image_templates:
-    - "gcr.io/tailsdotcom/{{ .ProjectName }}:{{ .Tag }}"
-    - "gcr.io/tailsdotcom/{{ .ProjectName }}:latest"
+    - "ghcr.io/tailsdotcom/{{ .ProjectName }}:{{ .Tag }}"
+    - "ghcr.io/tailsdotcom/{{ .ProjectName }}:latest"
     extra_files:
     - ca-certificates.crt
 changelog:
