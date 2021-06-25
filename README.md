@@ -17,7 +17,7 @@ Unless noted these are pre-configured and used based on their documentation.
   [Codeship](https://app.codeship.com/projects/7f08da42-b905-4f2e-a09a-bed0ac32973e).
 
 - **Deployment**:
-  Due to github limitiations this must be manually `push ghcr.io/tailsdotcom/growth-pull:latest`.
+  Tag a release in the from `v0.1.0` and wait for Github Actions.
 
 ### Settings
 
