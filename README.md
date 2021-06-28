@@ -2,29 +2,10 @@
 
 A dockercfg generator for Codeship.
 
-### Tooling
-
-Unless noted these are pre-configured and used based on their documentation.
-
-- **Planning and issues**:
-  [Clubhouse](https://app.clubhouse.io/tails/stories/space/12868/everything).
-
-- **Version control**:
-  [Github](https://github.com/tailsdotcom/growth-pull),
-  [Flow](https://guides.github.com/introduction/flow/).
-
-- **Continuous integration**:
-  [Github Actions](https://github.com/tailsdotcom/growth-pull/actions)
-
-- **Deployment**:
-  Tag a release in the from `v0.1.0` and wait for Github Actions.
-
-### Settings
-
 Must have access to AWS credentials as per the SDK [documentation](https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html).
 Normally via environment variables:
 
-- `AWS_REGION=eu-west-1`
+- `AWS_DEFAULT_REGION=eu-west-1`
 - `AWS_ACCESS_KEY_ID=`
 - `AWS_SECRET_ACCESS_KEY=`
 
