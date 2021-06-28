@@ -14,7 +14,7 @@ Unless noted these are pre-configured and used based on their documentation.
   [Flow](https://guides.github.com/introduction/flow/).
 
 - **Continuous integration**:
-  [Codeship](https://app.codeship.com/projects/7f08da42-b905-4f2e-a09a-bed0ac32973e).
+  [Github Actions](https://github.com/tailsdotcom/growth-pull/actions)
 
 - **Deployment**:
   Tag a release in the from `v0.1.0` and wait for Github Actions.
